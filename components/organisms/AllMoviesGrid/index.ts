@@ -1,1 +1,1 @@
-export { default } from './AllMoviesGrid';
+export { default } from "./AllMoviesGrid";

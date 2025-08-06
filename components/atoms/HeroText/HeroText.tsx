@@ -1,8 +1,7 @@
-import React from 'react';
-import HeroTextTemplate from './HeroTextTemplate';
+import React from "react";
+import HeroTextTemplate from "./HeroTextTemplate";
 
 const HeroText = () => {
-
   return <HeroTextTemplate />;
 };
 

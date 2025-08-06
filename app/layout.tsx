@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { DM_Sans } from 'next/font/google';
+import { DM_Sans } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider"
+import { ThemeProvider } from "@/components/theme-provider";
 
 const dmSans = DM_Sans({
-    variable: '--font-dm-sans',
-    weight: ['400', '700'],  // Include weights you need (700 for bold)
-    subsets: ['latin'],
+  variable: "--font-dm-sans",
+  weight: ["400", "700"], // Include weights you need (700 for bold)
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
@@ -21,17 +21,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${dmSans.variable} antialiased min-h-screen`}
-      >
-      <ThemeProvider
+      <body className={`${dmSans.variable} antialiased min-h-screen`}>
+        <ThemeProvider
           attribute="class"
           defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
-      >
-        {children}
-          </ThemeProvider>
+        >
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
