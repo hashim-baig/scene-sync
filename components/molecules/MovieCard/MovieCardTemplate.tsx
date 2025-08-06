@@ -20,7 +20,7 @@ const MovieCardTemplate: React.FC<MovieCardProps> = ({title, poster, ratings, la
                       width={198}
                       height={137}
                       className="rounded-xs h-[137px] m-0"
-                      style={{ width: 198, height: 137 }}
+                      style={{ width: 198, height: "auto" }}
                       priority
                   />
           </CardContent>

@@ -6,7 +6,6 @@ const MovieCard: React.FC<MovieCardProps> = ({title, poster, ratings, language, 
 
   const moviePoster = poster ? `https://image.tmdb.org/t/p/original${poster}` : `/No-Poster.png`
 
-  console.log("releaseYear: ", releaseYear)
   return <MovieCardTemplate
       title={title}
       poster={moviePoster}
