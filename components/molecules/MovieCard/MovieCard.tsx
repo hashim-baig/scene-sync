@@ -4,7 +4,7 @@ import {MovieCardProps} from "@/types";
 
 const MovieCard: React.FC<MovieCardProps> = ({title, poster, ratings, language, releaseYear}) => {
 
-  const moviePoster = poster ? `https://image.tmdb.org/t/p/original${poster}` : `/No-Poster.png`
+  const moviePoster = poster ? `https://image.tmdb.org/t/p/w500${poster}` : `/No-Poster.png`
 
   return <MovieCardTemplate
       title={title}

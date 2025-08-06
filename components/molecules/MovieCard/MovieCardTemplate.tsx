@@ -13,16 +13,18 @@ import {upperCase} from "upper-case";
 const MovieCardTemplate: React.FC<MovieCardProps> = ({title, poster, ratings, language, releaseYear}) => {
   return (
       <Card className="w-[230px] h-[225px] p-4 gap-3 rounded-xs">
-          <CardContent className="w-fit h-fit p-0">
-                  <Image
-                      src={poster}
-                      alt={`${title} Poster`}
-                      width={198}
-                      height={137}
-                      className="rounded-xs h-[137px] m-0"
-                      style={{ width: 198, height: "auto" }}
-                      priority
-                  />
+          <CardContent className="relative w-full h-[137px] p-0 overflow-hidden rounded-xs">
+              <Image
+                  src={poster}
+                  alt={`${title} Poster`}
+                  fill
+                  sizes="(max-width: 640px) 100vw, 230px"
+                  style={{
+                      objectFit: 'cover',
+                      objectPosition: 'top',
+                    }}
+                  priority
+              />
           </CardContent>
           <CardHeader className="p-0 gap-3">
               <CardTitle className="truncate max-w-full whitespace-nowrap overflow-hidden">{title}</CardTitle>
