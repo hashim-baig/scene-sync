@@ -6,19 +6,21 @@ import axiosInstance from "@/lib/axiosInstance";
 
 import {AllMoviesGridProps} from "@/types";
 
-const AllMoviesGrid: React.FC<AllMoviesGridProps> = ({searchTerm}) => {
+const AllMoviesGrid: React.FC<AllMoviesGridProps> = ({searchTerm, setTotalPageCount, currentPage}) => {
   const [moviesList, setMoviesList] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect( () => {
-    fetchMovies(searchTerm).then(() => {})
-  }, [searchTerm])
+    fetchMovies(searchTerm, currentPage).then(() => {})
+  }, [searchTerm, currentPage]);
 
-  const fetchMovies = async (query: string) => {
+  const fetchMovies = async (query: string, page: number) => {
     setLoading(true);
     try {
       let endpoint = "/discover/movie";
-      const params: Record<string, string | number> = {};
+      const params: Record<string, string | number> = {
+        page: page
+      };
 
       if (query.trim() !== "") {
         endpoint = "/search/movie";
@@ -27,8 +29,10 @@ const AllMoviesGrid: React.FC<AllMoviesGridProps> = ({searchTerm}) => {
 
       const response = await axiosInstance.get(endpoint, { params });
       const moviesList = response.data.results;
+      const totalPages = response.data.total_pages;
 
       setMoviesList(moviesList);
+      setTotalPageCount(totalPages);
     } catch(error) {
       console.log(error);
     } finally {

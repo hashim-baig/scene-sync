@@ -1,3 +1,5 @@
+import React from "react";
+
 interface Movie {
     id: string;
     title: string;
@@ -45,7 +47,30 @@ interface SearchBarProps {
 
 interface AllMoviesGridProps {
     searchTerm: string;
+    setTotalPageCount: (totalPageCount: number) => void;
+    currentPage: number;
 }
+
+interface Pagination {
+    totalPageCount: number;
+}
+
+interface PaginationProps extends Pagination {
+    currentPage: number;
+    setCurrentPage: (currentPage: number) => void;
+}
+
+interface PaginationTemplateProps extends Pagination {
+    handleNextPageChange: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+    handlePreviousPageChange: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+    handlePageChange: (pageNumber: number) => void;
+    currentPage: number;
+    isPrevDisabled: boolean;
+    isNextDisabled: boolean;
+    pageItems: PageOrEllipsis[];
+}
+
+type PageOrEllipsis = number | 'ellipsis';
 
 
 export type {
@@ -56,5 +81,8 @@ export type {
     HeroSectionProps,
     HeroSectionTemplateProps,
     SearchBarProps,
-    AllMoviesGridProps
+    AllMoviesGridProps,
+    PaginationProps,
+    PaginationTemplateProps,
+    PageOrEllipsis
 }

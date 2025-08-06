@@ -2,9 +2,12 @@
 import React, {useState} from "react";
 import AllMoviesGrid from "@/components/organisms/AllMoviesGrid";
 import HeroSection from "@/components/organisms/HeroSection";
+import Pagination from "@/components/molecules/Pagination";
 
 export default function Home() {
     const [searchTerm, setSearchTerm] = useState("");
+    const [totalPageCount, setTotalPageCount] = useState<number>(0);
+    const [currentPage, setCurrentPage] = useState<number>(1)
 
   return (
       <>
@@ -12,7 +15,16 @@ export default function Home() {
             setSearchTerm={setSearchTerm}
             searchTerm={searchTerm}
           />
-          <AllMoviesGrid searchTerm={searchTerm} />
+          <AllMoviesGrid
+              searchTerm={searchTerm}
+              setTotalPageCount={setTotalPageCount}
+              currentPage={currentPage}
+          />
+          <Pagination
+              totalPageCount={totalPageCount}
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+          />
       </>
   );
 }
