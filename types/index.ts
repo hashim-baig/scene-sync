@@ -10,28 +10,51 @@ interface Movie {
 interface AllMoviesGridTemplateProps {
     loading: boolean;
     moviesList: Movie[];
+    searchTerm: string;
 }
 
-interface MovieCardProps {
+interface MovieCard {
     title: string;
     poster: string;
-    ratings: number;
     language: string;
     releaseYear: string;
 }
 
-interface SearchBarProps {
+interface MovieCardProps extends MovieCard {
+    ratings: number;
+}
+
+interface MovieCardTemplateProps extends MovieCard {
+    ratings: string;
+}
+
+interface HeroSectionProps {
     setSearchTerm: (search: string) => void;
+    searchTerm: string;
+}
+
+interface HeroSectionTemplateProps {
+    handleSearchTermChange: (e: string) => void;
+    searchTerm: string;
+}
+
+interface SearchBarProps {
+    handleSearchTermChange: (e: string) => void;
+    searchTerm: string;
 }
 
 interface AllMoviesGridProps {
     searchTerm: string;
 }
 
+
 export type {
     Movie,
     AllMoviesGridTemplateProps,
     MovieCardProps,
+    MovieCardTemplateProps,
+    HeroSectionProps,
+    HeroSectionTemplateProps,
     SearchBarProps,
     AllMoviesGridProps
 }

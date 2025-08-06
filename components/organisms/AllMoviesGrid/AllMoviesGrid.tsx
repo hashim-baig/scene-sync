@@ -4,27 +4,31 @@ import React, {useEffect, useState} from 'react';
 import AllMoviesGridTemplate from './AllMoviesGridTemplate';
 import axiosInstance from "@/lib/axiosInstance";
 
-const AllMoviesGrid: React.FC = ({}) => {
+import {AllMoviesGridProps} from "@/types";
+
+const AllMoviesGrid: React.FC<AllMoviesGridProps> = ({searchTerm}) => {
   const [moviesList, setMoviesList] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const fetchMovies = async () => {
+  useEffect( () => {
+    fetchMovies(searchTerm).then(() => {})
+  }, [searchTerm])
+
+  const fetchMovies = async (query: string) => {
     setLoading(true);
     try {
-      const endpoint = "/discover/movie";
-      const params = {
-      };
+      let endpoint = "/discover/movie";
+      const params: Record<string, string | number> = {};
 
-      // if (searchTerm.trim() !== "") {
-      //   endpoint = "/search/movie";
-      //   params.query = searchTerm.trim();
-      // }
+      if (query.trim() !== "") {
+        endpoint = "/search/movie";
+        params.query = query.trim();
+      }
 
       const response = await axiosInstance.get(endpoint, { params });
       const moviesList = response.data.results;
 
       setMoviesList(moviesList);
-      console.log("Movies", response.data.results)
     } catch(error) {
       console.log(error);
     } finally {
@@ -32,13 +36,10 @@ const AllMoviesGrid: React.FC = ({}) => {
     }
   }
 
-  useEffect( () => {
-    fetchMovies().then(() => {})
-  }, [])
-
   return <AllMoviesGridTemplate
             loading={loading}
             moviesList={moviesList}
+            searchTerm={searchTerm}
           />;
 };
 
