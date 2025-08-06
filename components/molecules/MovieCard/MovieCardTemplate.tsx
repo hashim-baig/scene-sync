@@ -11,7 +11,7 @@ import { MovieCardTemplateProps} from "@/types";
 
 const MovieCardTemplate: React.FC<MovieCardTemplateProps> = ({title, poster, ratings, language, releaseYear}) => {
   return (
-      <Card className="w-[230px] h-[225px] p-4 gap-3 rounded-xs">
+      <Card className="w-full h-full  p-4 gap-3 rounded-xs">
           <CardContent className="relative w-full h-[137px] p-0 overflow-hidden rounded-xs">
               <Image
                   src={poster}
@@ -20,7 +20,7 @@ const MovieCardTemplate: React.FC<MovieCardTemplateProps> = ({title, poster, rat
                   sizes="(max-width: 640px) 100vw, 230px"
                   style={{
                       objectFit: 'cover',
-                      objectPosition: 'top',
+                      objectPosition: 'top center',
                     }}
                   priority
               />

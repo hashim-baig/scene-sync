@@ -10,9 +10,9 @@ import {Skeleton} from "@/components/ui/skeleton";
 
 const MovieCardSkeleton = ({}) => {
     return (
-        <Card className="w-[230px] h-[225px] p-4 gap-3 rounded-xs">
-            <CardContent className="w-fit h-fit p-0">
-                <Skeleton className="h-[137px] w-[198px]"/>
+        <Card className="w-full h-full p-4 gap-3 rounded-xs">
+            <CardContent className="w-full h-fit p-0">
+                <Skeleton className="h-[137px] w-full"/>
             </CardContent>
             <CardHeader className="p-0 gap-3">
                 <CardTitle className="truncate max-w-full whitespace-nowrap overflow-hidden">

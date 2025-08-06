@@ -16,7 +16,7 @@ const AllMoviesGridTemplate: React.FC<AllMoviesGridTemplateProps> = ({loading, m
                 }
             </div>
 
-            <div className="grid gap-6.5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 mx-auto justify-items-center">
+            <div className="grid gap-6.5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 mx-auto justify-items-center pb-20">
                 {
                     loading ? Array.from({ length: 20 }).map((_, index) => <MovieCardSkeleton key={index} />) :
                         moviesList.map((movie) => (
