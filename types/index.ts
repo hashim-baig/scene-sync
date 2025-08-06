@@ -33,6 +33,7 @@ interface MovieCardTemplateProps extends MovieCard {
 interface HeroSectionProps {
     setSearchTerm: (search: string) => void;
     searchTerm: string;
+    setCurrentPage: (page: number) => void;
 }
 
 interface HeroSectionTemplateProps {

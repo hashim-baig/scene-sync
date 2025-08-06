@@ -12,7 +12,6 @@ import {Button} from "@/components/ui/button";
 import {PaginationTemplateProps} from "@/types";
 
 const PaginationTemplate: React.FC<PaginationTemplateProps> = ({
-                                                                 totalPageCount,
                                                                  handleNextPageChange,
                                                                  handlePreviousPageChange,
                                                                    handlePageChange,
@@ -95,8 +94,6 @@ const PaginationTemplate: React.FC<PaginationTemplateProps> = ({
               </PaginationItem>
           </PaginationContent>
         </Pagination>
-        <p className="text-center py-2">Total Pages: {totalPageCount}</p>
-        <p className="text-center py-2">Current Page: {currentPage}</p>
       </section>
   );
 };

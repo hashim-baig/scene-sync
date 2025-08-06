@@ -1,6 +1,6 @@
 "use client"
 
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useCallback} from 'react';
 import AllMoviesGridTemplate from './AllMoviesGridTemplate';
 import axiosInstance from "@/lib/axiosInstance";
 
@@ -10,11 +10,7 @@ const AllMoviesGrid: React.FC<AllMoviesGridProps> = ({searchTerm, setTotalPageCo
   const [moviesList, setMoviesList] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect( () => {
-    fetchMovies(searchTerm, currentPage).then(() => {})
-  }, [searchTerm, currentPage]);
-
-  const fetchMovies = async (query: string, page: number) => {
+  const fetchMovies = useCallback(async (query: string, page: number) => {
     setLoading(true);
     try {
       let endpoint = "/discover/movie";
@@ -31,14 +27,20 @@ const AllMoviesGrid: React.FC<AllMoviesGridProps> = ({searchTerm, setTotalPageCo
       const moviesList = response.data.results;
       const totalPages = response.data.total_pages;
 
+      const cappedTotalPages = totalPages > 500 ? 500 : totalPages;
+
       setMoviesList(moviesList);
-      setTotalPageCount(totalPages);
+      setTotalPageCount(cappedTotalPages);
     } catch(error) {
       console.log(error);
     } finally {
       setLoading(false);
     }
-  }
+  }, [setTotalPageCount]);
+
+  useEffect( () => {
+    fetchMovies(searchTerm, currentPage).then(() => {})
+  }, [searchTerm, currentPage, fetchMovies]);
 
   return <AllMoviesGridTemplate
             loading={loading}

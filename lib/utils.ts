@@ -7,10 +7,13 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export const getPageItems = (currentPage: number, totalPages: number): PageOrEllipsis[] =>  {
+
+  const cappedTotalPages = totalPages > 500 ? 500 : totalPages;
+
   const pages: PageOrEllipsis[] = [];
 
-  if (totalPages <= 7) {
-    for (let i = 1; i <= totalPages; i++) {
+  if (cappedTotalPages <= 7) {
+    for (let i = 1; i <= cappedTotalPages; i++) {
       pages.push(i);
     }
     return pages;
@@ -29,19 +32,19 @@ export const getPageItems = (currentPage: number, totalPages: number): PageOrEll
     }
   }
 
-  for (let i = Math.max(2, left); i <= Math.min(totalPages - 1, right); i++) {
+  for (let i = Math.max(2, left); i <= Math.min(cappedTotalPages - 1, right); i++) {
     pages.push(i);
   }
 
-  if (right < totalPages - 1) {
+  if (right < cappedTotalPages - 1) {
     pages.push('ellipsis');
   } else {
-    for(let i = right + 1; i < totalPages; i++) {
+    for(let i = right + 1; i < cappedTotalPages; i++) {
       pages.push(i);
     }
   }
 
-  pages.push(totalPages);
+  pages.push(cappedTotalPages);
 
   return pages;
 }

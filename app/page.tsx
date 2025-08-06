@@ -14,6 +14,7 @@ export default function Home() {
           <HeroSection
             setSearchTerm={setSearchTerm}
             searchTerm={searchTerm}
+            setCurrentPage={setCurrentPage}
           />
           <AllMoviesGrid
               searchTerm={searchTerm}
