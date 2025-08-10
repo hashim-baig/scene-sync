@@ -16,7 +16,9 @@ interface Filters {
 interface AllMoviesGridTemplateProps {
   loading: boolean;
   moviesList: Movie[];
+  searchTerm: string;
   setFilters: React.Dispatch<React.SetStateAction<Filters>>;
+  filters: Filters;
 }
 
 interface MovieCard {

@@ -8,9 +8,10 @@ interface Filters {
 
 type MovieFiltersProps = {
     setFilters: React.Dispatch<React.SetStateAction<Filters>>;
+    filters: Filters;
 }
 
-const MovieFilters = ({setFilters}: MovieFiltersProps) => {
+const MovieFilters = ({setFilters, filters}: MovieFiltersProps) => {
     const [loading, setLoading] = useState(false);
     const [languages, setLanguages] = useState([]);
 
@@ -18,11 +19,9 @@ const MovieFilters = ({setFilters}: MovieFiltersProps) => {
         async () => {
             setLoading(true);
             try {
-
                 const response = await axiosInstance.get(`/configuration/languages`);
                 const langOptions = response.data;
                 setLanguages(langOptions);
-                console.log(langOptions);
             } catch (error) {
                 console.log(error);
             } finally {
@@ -39,6 +38,7 @@ const MovieFilters = ({setFilters}: MovieFiltersProps) => {
     return <MovieFiltersTemplate
         langOptions={languages}
         setFilters={setFilters}
+        filters={filters}
     />;
 };
 

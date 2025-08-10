@@ -8,6 +8,8 @@ const AllMoviesGridTemplate: React.FC<AllMoviesGridTemplateProps> = ({
                                                                          loading,
                                                                          moviesList,
                                                                          setFilters,
+                                                                         searchTerm,
+                                                                         filters,
                                                                      }) => {
     return (
         <section className="pt-[20px] px-[40px]">
@@ -17,8 +19,12 @@ const AllMoviesGridTemplate: React.FC<AllMoviesGridTemplateProps> = ({
 
 
             <div className="pb-[20px]">
-                {/*{searchTerm && <p>Showing Results for: {searchTerm}</p>}*/}
-                <MovieFilters setFilters={setFilters} />
+                {searchTerm ?
+                    <p>Showing Results for: {searchTerm}</p> :
+                    <MovieFilters
+                        setFilters={setFilters}
+                        filters={filters}
+                    />}
             </div>
 
             <div

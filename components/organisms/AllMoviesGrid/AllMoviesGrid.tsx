@@ -14,12 +14,8 @@ const AllMoviesGrid: React.FC<AllMoviesGridProps> = ({
   const [moviesList, setMoviesList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filters, setFilters] = useState({
-    language: ''
+    language: 'en'
   });
-
-  useEffect(() => {
-    console.log(filters, `filterChanged`);
-  }, [filters]);
 
   const fetchMovies = useCallback(
     async (query: string, page: number, fetchFilter: { language: string}) => {
@@ -63,6 +59,8 @@ const AllMoviesGrid: React.FC<AllMoviesGridProps> = ({
       loading={loading}
       moviesList={moviesList}
       setFilters={setFilters}
+      searchTerm={searchTerm}
+      filters={filters}
     />
   );
 };

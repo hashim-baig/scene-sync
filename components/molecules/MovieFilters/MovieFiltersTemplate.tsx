@@ -19,10 +19,11 @@ type MovieFiltersTemplateProps = {
         name: string;
     }[]
     setFilters: React.Dispatch<React.SetStateAction<Filters>>;
+    filters: Filters;
 }
 
 const
-    MovieFiltersTemplate    = ({langOptions = [], setFilters}:  MovieFiltersTemplateProps) => {
+    MovieFiltersTemplate    = ({langOptions = [], setFilters, filters}:  MovieFiltersTemplateProps) => {
 
     return (
             <div className="flex items-center gap-2">
@@ -34,6 +35,7 @@ const
                             language: value
                         }))
                     }
+                    defaultValue={filters.language}
                 >
                 <SelectTrigger className="w-[180px]">
                         <SelectValue placeholder="Language" />
