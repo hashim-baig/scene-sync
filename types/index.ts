@@ -9,10 +9,14 @@ interface Movie {
   release_date: string;
 }
 
+interface Filters {
+  language: string;
+}
+
 interface AllMoviesGridTemplateProps {
   loading: boolean;
   moviesList: Movie[];
-  searchTerm: string;
+  setFilters: React.Dispatch<React.SetStateAction<Filters>>;
 }
 
 interface MovieCard {

@@ -13,19 +13,28 @@ const AllMoviesGrid: React.FC<AllMoviesGridProps> = ({
 }) => {
   const [moviesList, setMoviesList] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [filters, setFilters] = useState({
+    language: ''
+  });
+
+  useEffect(() => {
+    console.log(filters, `filterChanged`);
+  }, [filters]);
 
   const fetchMovies = useCallback(
-    async (query: string, page: number) => {
+    async (query: string, page: number, fetchFilter: { language: string}) => {
       setLoading(true);
       try {
         let endpoint = "/discover/movie";
         const params: Record<string, string | number> = {
           page: page,
+          with_original_language: fetchFilter.language
         };
 
         if (query.trim() !== "") {
           endpoint = "/search/movie";
           params.query = query.trim();
+          params.language = fetchFilter.language;
         }
 
         const response = await axiosInstance.get(endpoint, { params });
@@ -46,14 +55,14 @@ const AllMoviesGrid: React.FC<AllMoviesGridProps> = ({
   );
 
   useEffect(() => {
-    fetchMovies(searchTerm, currentPage).then(() => {});
-  }, [searchTerm, currentPage, fetchMovies]);
+    fetchMovies(searchTerm, currentPage, filters).then(() => {});
+  }, [searchTerm, currentPage, fetchMovies, filters]);
 
   return (
     <AllMoviesGridTemplate
       loading={loading}
       moviesList={moviesList}
-      searchTerm={searchTerm}
+      setFilters={setFilters}
     />
   );
 };
