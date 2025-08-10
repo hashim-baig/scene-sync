@@ -21,7 +21,10 @@ const MovieFilters = ({setFilters, filters}: MovieFiltersProps) => {
             try {
                 const response = await axiosInstance.get(`/configuration/languages`);
                 const langOptions = response.data;
-                setLanguages(langOptions);
+                const sortedLangs = [...langOptions].sort((a, b) =>
+                    a.english_name.localeCompare(b.english_name)
+                );
+                setLanguages(sortedLangs);
             } catch (error) {
                 console.log(error);
             } finally {
